@@ -1,0 +1,20 @@
+{
+  "name": "metalab-handoff",
+  "owner": {
+    "name": "MetaLab"
+  },
+  "metadata": {
+    "description": "Figma-to-code handoff, readiness checks, and drift fixes — stateless base tier: no contracts, no registry, no addons.",
+    "version": "0.1.0",
+    "pluginRoot": "."
+  },
+  "plugins": [
+    {
+      "name": "metalab-handoff",
+      "source": ".",
+      "description": "Figma-to-code handoff, readiness checks, and drift fixes — stateless base tier: no contracts, no registry, no addons.",
+      "version": "0.1.0",
+      "keywords": ["figma", "design-handoff", "design-sync", "drift", "design-tokens", "design-system"]
+    }
+  ]
+}

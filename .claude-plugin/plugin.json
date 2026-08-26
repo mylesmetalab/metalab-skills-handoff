@@ -1,0 +1,8 @@
+{
+  "name": "metalab-handoff",
+  "version": "0.1.0",
+  "description": "Figma-to-code handoff, readiness checks, and drift fixes — stateless: no contracts, no registry, no addons. Each skill reads Figma and the repo fresh and acts.",
+  "author": {
+    "name": "MetaLab"
+  }
+}
