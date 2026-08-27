@@ -1,0 +1,63 @@
+/*
+ * Example component, following components/README.md's convention.
+ * Replace or extend once a real Figma Button exists — "build-it" and
+ * "fix-it" match this shape, so keep new components consistent with it
+ * rather than inventing a new pattern per component.
+ */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-2);
+  border-radius: var(--radius-md);
+  border: none;
+  font-family: var(--font-sans);
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 150ms ease;
+}
+
+.btn--md {
+  padding: var(--spacing-2) var(--spacing-4);
+}
+
+.btn--sm {
+  padding: var(--spacing-1) var(--spacing-3);
+  font-size: 0.875em;
+}
+
+.btn--primary {
+  background: var(--color-primary);
+  color: var(--color-primary-foreground);
+}
+
+.btn--primary:hover {
+  background: var(--color-primary-hover);
+}
+
+.btn--primary:disabled {
+  background: var(--color-muted);
+  color: var(--color-muted-foreground);
+  cursor: not-allowed;
+}
+
+.btn--secondary {
+  background: var(--color-background);
+  color: var(--color-foreground);
+  border: 1px solid var(--color-border);
+}
+
+.btn--secondary:hover {
+  background: var(--color-muted);
+}
+
+.btn--secondary:disabled {
+  color: var(--color-muted-foreground);
+  cursor: not-allowed;
+}
+
+.btn:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}

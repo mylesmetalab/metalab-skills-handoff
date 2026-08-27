@@ -25,11 +25,17 @@ Every run reads the repo fresh — there is no config file recording its stack o
 
 ## Delivering
 
-Ship it as a PR (or, with no PR-capable CLI available, a branch plus instructions to open one by hand — never ask the user to run git commands themselves). Since there's no contract file to carry the paper trail, put it in the PR description instead:
+This plugin is local-first: git and a PR host are conveniences it uses when they're there, never a requirement to get a component built. Detect which of three tiers applies rather than assuming the top one — `am-i-set-up` will already have told you if it's been run this conversation:
+
+- **No git repo at all** (or the target *is* the `new-project` scaffold with no `git init` yet) — write the files directly into `components/<name>/` and tell the client exactly what was added/changed, file by file. Nothing to merge; the code is just there. Say plainly that nothing is versioned yet, in case they want to `git init` later.
+- **A git repo, but no PR-capable CLI or no write access** — commit to a new local branch and give the client the exact commands to push it and open a PR by hand (or just to merge locally if they're working solo). Never make them improvise the git commands themselves.
+- **Full access** — open the PR.
+
+Whichever tier, since there's no contract file to carry the paper trail, put the equivalent in the PR description (or, at tier 1, in your summary to the client):
 
 - The Figma source (file, node) and date read.
 - Every variant → prop mapping and every token binding, so a reviewer can check the claims without reopening Figma.
 - Anything the design didn't specify, listed plainly ("needs a decision: ...") rather than buried in a comment.
 - Any new token added, named explicitly in the title or first line — a reviewer should never discover a new token by reading the diff.
 
-Tell the user plainly what's in the PR and their options — merge it themselves, or hand it to whoever reviews. Never make them run a CLI command to finish the job.
+Tell the user plainly what happened and their options at whichever tier applied. Never make them run a CLI command to finish the job themselves unless that command is literally the one thing tier 2 hands them to paste.

@@ -1,0 +1,18 @@
+/* Page-level styles only. Component styles live under components/<name>/. */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  color: var(--color-foreground);
+  background: var(--color-background);
+}
+
+main {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: var(--spacing-4);
+}

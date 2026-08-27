@@ -4,17 +4,17 @@
     "name": "MetaLab"
   },
   "metadata": {
-    "description": "Figma-to-code handoff, readiness checks, and drift fixes — stateless base tier: no contracts, no registry, no addons.",
-    "version": "0.1.0",
+    "description": "Local-first Figma-to-code handoff: project scaffolding, readiness checks, and drift fixes — stateless base tier, git/GitHub optional.",
+    "version": "0.2.0",
     "pluginRoot": "."
   },
   "plugins": [
     {
       "name": "metalab-handoff",
       "source": ".",
-      "description": "Figma-to-code handoff, readiness checks, and drift fixes — stateless base tier: no contracts, no registry, no addons.",
-      "version": "0.1.0",
-      "keywords": ["figma", "design-handoff", "design-sync", "drift", "design-tokens", "design-system"]
+      "description": "Local-first Figma-to-code handoff: project scaffolding, readiness checks, and drift fixes — stateless base tier, git/GitHub optional.",
+      "version": "0.2.0",
+      "keywords": ["figma", "design-handoff", "design-sync", "drift", "design-tokens", "design-system", "scaffolding"]
     }
   ]
 }

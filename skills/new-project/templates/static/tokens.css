@@ -1,0 +1,59 @@
+/*
+ * Design tokens. This file is the single source of truth every component
+ * must reference — never a hardcoded color, spacing, or radius value in a
+ * component file.
+ *
+ * "sync-tokens" diffs this file against the Figma variable collections,
+ * so keep the token names close to their Figma variable names (color/primary
+ * -> --color-primary) — that's what makes the name-matching reliable instead
+ * of guesswork.
+ *
+ * Light values live on :root. Dark values are re-declared twice: once for
+ * the OS-level preference (prefers-color-scheme), once for an explicit
+ * .dark class on <html> if the project ever adds a manual toggle. Both
+ * blocks must stay in sync — that's on purpose, not a mistake to "clean up".
+ */
+
+:root {
+  --color-background: #ffffff;
+  --color-foreground: #171717;
+  --color-primary: #6d28d9;
+  --color-primary-hover: #5b21b6;
+  --color-primary-foreground: #ffffff;
+  --color-border: #e5e5e5;
+  --color-muted: #f5f5f5;
+  --color-muted-foreground: #737373;
+
+  --spacing-1: 4px;
+  --spacing-2: 8px;
+  --spacing-3: 12px;
+  --spacing-4: 16px;
+
+  --radius-md: 6px;
+
+  --font-sans: system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not(.light) {
+    --color-background: #0a0a0a;
+    --color-foreground: #fafafa;
+    --color-primary: #a78bfa;
+    --color-primary-hover: #c4b5fd;
+    --color-primary-foreground: #0a0a0a;
+    --color-border: #262626;
+    --color-muted: #262626;
+    --color-muted-foreground: #a3a3a3;
+  }
+}
+
+:root.dark {
+  --color-background: #0a0a0a;
+  --color-foreground: #fafafa;
+  --color-primary: #a78bfa;
+  --color-primary-hover: #c4b5fd;
+  --color-primary-foreground: #0a0a0a;
+  --color-border: #262626;
+  --color-muted: #262626;
+  --color-muted-foreground: #a3a3a3;
+}
