@@ -37,6 +37,10 @@ Run them independently, in any order — `new-project` before anything that need
 
 Run `am-i-set-up` first, always — it checks Figma access and tells you which delivery tier applies, or routes straight to `new-project` if there's nothing local yet.
 
+## Known limitation: multi-mode Figma files (e.g. light/dark)
+
+The Figma reads this plugin uses return one resolved value per node — whichever mode the file is currently rendering in — with no way to request a specific mode. For a single-mode file this is a non-issue. For a file with light/dark (or any other multi-mode collection), `is-this-ready`, `check-it`, and `fix-it` can only verify the one mode they can reach, and they say so plainly rather than reporting an unchecked mode as clean. In practice this means **dark-mode drift can go undetected on the base tier** unless something else independently confirms it (the paid Storybook addon does per-mode comparison directly). Tell clients this up front if their design system has more than one mode — it's a real gap, not a hedge.
+
 ## Installing
 
 ```bash
