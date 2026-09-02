@@ -1,5 +1,7 @@
 # metalab-handoff
 
+> Written by Claude, under Myles Palmer's direction — including the skills themselves, the tests that found their bugs, and this README.
+
 A Claude Code plugin for Figma-to-code handoff: local project scaffolding, readiness checks, component generation, drift diffing, fixes, specs, and token-system syncing. **Stateless by design** — no contract files, no registry, no addons required. Every skill reads Figma and the target project fresh each time it runs and either reports, edits files directly, or opens a PR — whichever the environment actually supports.
 
 This is the portable base tier of MetaLab's design-sync work. The paid tier adds Storybook addons for live visual/state comparison and a contract file that remembers handoff decisions across runs — this plugin works without either.
@@ -13,6 +15,61 @@ Nothing here requires git or GitHub to get started. A client with no dev environ
 3. **Full GitHub (or GitLab/Bitbucket) access** — they open the PR themselves.
 
 `am-i-set-up` detects which tier applies and says so; nothing needs configuring in advance, and a client can add git and GitHub later without restructuring anything this plugin built.
+
+## Try it now
+
+A dedicated demo file if you don't have your own component handy: **[Skill-Checker](https://www.figma.com/design/A3hXd3fL6FufTiqQUk8UjS/Skill-Checker?node-id=0-1)**. Point `is-this-ready` at the "Banner Module" component (`node-id=1-29`) and go from there — it's got a detached component, a couple of unbound literals, and a real interactive dropdown, deliberately, so there's something for the skills to actually find.
+
+## Suggested order
+
+For a first handoff, run these roughly in this sequence — none of it is enforced (there's no shared state to enforce it), but this is the order that avoids backtracking:
+
+1. **`am-i-set-up`** — confirms Figma access and tells you whether you're starting from nothing.
+2. **`new-project`** — only if step 1 found no local project.
+3. **`is-this-ready`** on the component you're handing off — don't skip this even if it feels obvious; see the example below.
+4. **`build-it`** — refuses to run if step 3 came back NOT READY, so fix what it found first.
+5. **`check-it`**, later, whenever someone asks "does this still match Figma" — days or months on, no memory of the build required.
+6. **`fix-it`** on whatever `check-it` finds.
+7. **`spec-it`** and **`sync-tokens`** as needed — both read-only, run either any time.
+
+## See it in action
+
+A real `is-this-ready` report, condensed, from the demo file above:
+
+```
+## is-this-ready — Banner Module (node 1:29)
+
+1. Bound tokens ............................ PASS (one exception, below)
+2. No detached instances ................... FAIL — see finding
+3. Real component, not a styled frame ...... PASS
+4. Library published ........................ NOT VERIFIED (no tool available)
+5. Every variant axis fully specified ....... PASS
+6. Text layers use text styles .............. PASS
+
+FINDING — detached instance (blocks a clean build):
+Three of Banner Module's four form fields ("Text Input - Full name",
+"Text Input - Organization", "Dropdown - Interested in") are plain
+`frame` nodes, not `instance` nodes — confirmed via get_metadata's
+type tagging. A whole-file component search (list_file_components_
+for_code_connect, not just a page-walk) found the real, published
+source for two of them:
+
+  - Input Field (node 1:71) — states Default/Active/Disabled, zero
+    instances anywhere in the file.
+  - Dropdown Input/Container/Item (1:105 / 1:102 / 1:95) — real,
+    with genuine open/close behavior.
+
+No matching component exists anywhere for the third field
+("Text Area - Message") — searched exhaustively, confirmed absent,
+not just unfound.
+
+VERDICT: NOT READY, with a specific path to ready — rebind or
+replace the two detached fields with their real components before
+build-it runs; the third is legitimately ad hoc and can proceed
+once flagged.
+```
+
+That's a real finding from a real run, not a mocked example — the whole reason `is-this-ready` exists is to catch exactly this before it becomes a build-it mistake instead of a five-second Figma fix.
 
 ## Skills
 
@@ -44,9 +101,13 @@ The Figma reads this plugin uses return one resolved value per node — whicheve
 ## Installing
 
 ```bash
-claude plugin marketplace add <this-repo-url>
+claude plugin marketplace add github.com/mylesmetalab/metalab-skills-handoff
 claude plugin install metalab-handoff
 ```
+
+## Does this actually work?
+
+Tested, not just asserted: a blind test where a separate agent made seven real changes to the demo file above while the grader stayed blind to the specifics until both a skilled and an unbriefed session reported back. **[Full results, methodology, and two live builds you can click through →](https://claude.ai/code/artifact/7c58d227-2504-441e-bc03-bef514482079)**
 
 ## Design principles this plugin follows
 
