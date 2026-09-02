@@ -105,10 +105,6 @@ claude plugin marketplace add github.com/mylesmetalab/metalab-skills-handoff
 claude plugin install metalab-handoff
 ```
 
-## Does this actually work?
-
-Tested, not just asserted: a blind test where a separate agent made seven real changes to the demo file above while the grader stayed blind to the specifics until both a skilled and an unbriefed session reported back. **[Full results, methodology, and two live builds you can click through →](https://claude.ai/code/artifact/7c58d227-2504-441e-bc03-bef514482079)**
-
 ## Design principles this plugin follows
 
 - **Local-first.** A client without git, GitHub, or Node still gets a working project and working components — those are conveniences this plugin uses when present, not preconditions for it to work at all.
