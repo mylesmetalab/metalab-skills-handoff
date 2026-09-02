@@ -13,7 +13,7 @@ One folder per component: `components/<PascalCaseName>/`. Each folder holds:
 
 ## Accessible, interactive components
 
-For anything with real behavior a plain element can't express on its own — a select/combobox, a dialog, a tooltip, a menu — reach for the matching primitive from **Base UI** (`@base-ui-components/react`, already a dependency) rather than hand-rolling focus management, keyboard handling, or ARIA wiring. Base UI ships unstyled — style it the same way as everything else, through `tokens.css` custom properties, not its own defaults.
+For anything with real behavior a plain element can't express on its own — a select/combobox, a dialog, a tooltip, a menu — reach for the matching primitive from **Base UI** (`@base-ui/react`, already a dependency) rather than hand-rolling focus management, keyboard handling, or ARIA wiring. Base UI ships unstyled — style it the same way as everything else, through `tokens.css` custom properties, not its own defaults.
 
 ## See it working
 
