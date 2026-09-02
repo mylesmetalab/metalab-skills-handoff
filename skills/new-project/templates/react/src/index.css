@@ -1,5 +1,3 @@
-/* Page-level styles only. Component styles live under components/<name>/. */
-
 * {
   box-sizing: border-box;
 }

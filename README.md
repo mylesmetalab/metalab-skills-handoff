@@ -6,7 +6,7 @@ This is the portable base tier of MetaLab's design-sync work. The paid tier adds
 
 ## Local-first, GitHub-optional
 
-Nothing here requires git or GitHub to get started. A client with no dev environment at all runs `new-project` and gets a real local project — plain HTML/CSS/JS by default, no install, no build step — with the exact architecture the rest of the plugin expects. Everything downstream degrades to whatever's actually there, in three tiers:
+Nothing here requires git or GitHub to get started. A client with no dev environment at all runs `new-project` and gets a real local project — React + TypeScript + Base UI when Node is available (the default), plain HTML/CSS/JS only when it genuinely isn't — with the exact architecture the rest of the plugin expects. Everything downstream degrades to whatever's actually there, in three tiers:
 
 1. **No git** — `build-it`/`fix-it`/`sync-tokens` write files directly and describe the change in plain language.
 2. **Git, no PR access** — they commit to a local branch and hand over the exact commands to push and open a PR by hand.
@@ -19,7 +19,7 @@ Nothing here requires git or GitHub to get started. A client with no dev environ
 | Skill | What you say | What it needs |
 |---|---|---|
 | `am-i-set-up` | "am I set up?" | Figma MCP; everything else is detected, not required |
-| `new-project` | "start a project" | Nothing — no Figma, no git, no Node (unless the Node template is chosen) |
+| `new-project` | "start a project" | Nothing — no Figma, no git. Uses Node/React if Node is present, plain HTML/CSS/JS if not |
 | `is-this-ready` | "is this ready to hand off?" | Figma MCP only |
 | `build-it` | "build this" | Figma MCP + a local project (git/PR access optional — see tiers above) |
 | `check-it` | "check for drift" | Figma MCP + local read access to the component |
